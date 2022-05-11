@@ -3,8 +3,10 @@ import { CommonModule } from '@angular/common';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { SidenavComponent } from './sidenav/sidenav.component';
-import {MatToolbarModule} from '@angular/material/toolbar';
-
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatListModule } from '@angular/material/list';
+import { RouterModule } from '@angular/router';
+import { MatIconModule } from '@angular/material/icon';
 
 @NgModule({
   declarations: [
@@ -14,12 +16,16 @@ import {MatToolbarModule} from '@angular/material/toolbar';
   ],
   imports: [
     CommonModule,
-    MatToolbarModule
+    MatToolbarModule,
+    MatListModule,
+    RouterModule,
+    MatIconModule
   ],
-  exports:[
+  exports: [
     HeaderComponent,
     SidenavComponent,
     FooterComponent,
+
 
   ]
 })

@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { MenuAddComponent } from './menu-add/menu-add.component';
 
 @Component({
   selector: 'app-menu',
@@ -7,9 +9,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MenuComponent implements OnInit {
 
-  constructor() { }
+  constructor(public dialog:MatDialog) { }
 
   ngOnInit(): void {
   }
-
+  openDialog(){
+    this.dialog.open(MenuAddComponent,{
+      width:'600px',
+      hasBackdrop:false
+    });
+  }
 }

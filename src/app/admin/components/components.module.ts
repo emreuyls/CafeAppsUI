@@ -2,6 +2,8 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MenuModule } from './menu/menu.module';
 import { DashboardModule } from './dashboard/dashboard.module';
+import { OrderModule } from './order/order.module';
+import { TableModule } from './table/table.module';
 
 
 
@@ -9,11 +11,14 @@ import { DashboardModule } from './dashboard/dashboard.module';
   declarations: [],
   imports: [
     CommonModule,
-    MenuModule
+    MenuModule,
+
   ],
   exports:[
     MenuModule,
-    DashboardModule
+    DashboardModule,
+    OrderModule,
+    TableModule
   ]
 })
 export class ComponentsModule { }

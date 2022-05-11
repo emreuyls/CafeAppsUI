@@ -1,0 +1,14 @@
+<table class="ui celled table">
+  <thead>
+    <tr><th>Name</th>
+    <th>Age</th>
+    <th>Job</th>
+  </tr></thead>
+  <tbody>
+    <tr *ngFor="let menus of menu">
+      <td data-label="Name">{{menus.title}}</td>
+      <td data-label="Age">{{menus.description}}</td>
+      <td data-label="Job">{{menus.price|number}}</td>
+    </tr>
+  </tbody>
+</table>
