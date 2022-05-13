@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { toArray } from 'rxjs';
 import { Menu } from 'src/app/model/models/Menu.model';
 import { HttpClientService } from 'src/app/services/common/http-client.service';
+
 
 @Component({
   selector: 'app-menu',
@@ -17,7 +19,7 @@ export class MenuComponent implements OnInit {
       controller: "menu"
     }).subscribe(
       (success) => {
-        this.menu = success;
+
       },
       (error) => {
         console.log(error);

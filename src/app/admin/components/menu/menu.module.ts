@@ -14,18 +14,23 @@ import { MatDialogModule, MAT_DIALOG_DEFAULT_OPTIONS } from '@angular/material/d
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
 import { MatInputModule } from '@angular/material/input';
+import { MenuTypesComponent } from './menu-types/menu-types.component';
+import { MenuTypesAddComponent } from './menu-types-add/menu-types-add.component';
 
 @NgModule({
   declarations: [
     MenuComponent,
     MenuAddComponent,
     MenuTableComponent,
+    MenuTypesComponent,
+    MenuTypesAddComponent,
   ],
   imports: [
     CommonModule,
     RouterModule.forChild([
       { path: "", component: MenuComponent },
       { path: "Add", component: MenuComponent },
+      { path: "MenuTypes", component: MenuTypesComponent }
     ]),
     MatTabsModule,
     MatTableModule,

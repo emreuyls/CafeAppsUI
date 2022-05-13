@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MenuAddComponent } from './menu-add/menu-add.component';
+import { MenuTypesAddComponent } from './menu-types-add/menu-types-add.component';
 
 @Component({
   selector: 'app-menu',
@@ -9,14 +10,21 @@ import { MenuAddComponent } from './menu-add/menu-add.component';
 })
 export class MenuComponent implements OnInit {
 
-  constructor(public dialog:MatDialog) { }
+  constructor(public dialog: MatDialog) { }
 
   ngOnInit(): void {
   }
-  openDialog(){
-    this.dialog.open(MenuAddComponent,{
-      width:'600px',
-      hasBackdrop:false
+  openCreateMenuDialog() {
+    this.dialog.open(MenuAddComponent, {
+      width: '600px',
+      hasBackdrop: false
+    });
+
+  }
+  openCreateMenuTypeDialog() {
+    this.dialog.open(MenuTypesAddComponent, {
+      width: '600px',
+      hasBackdrop: false
     });
   }
 }

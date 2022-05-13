@@ -1,11 +1,11 @@
 <h1 mat-dialog-title>Menü Ekleme</h1>
 <div mat-dialog-content>
   <form >
-    <mat-form-field appearance="outline"  class="add_menu_input">
+    <mat-form-field appearance="outline"   >
       <mat-label>Yiyecek Adı</mat-label>
-      <input matInput >
+      <input matInput>
     </mat-form-field>
-    <mat-form-field appearance="outline" class="add_menu_input">
+    <mat-form-field appearance="outline" >
       <mat-label>Tür Seçiniz</mat-label>
       <mat-select>
         <mat-option value="one">Sıcak</mat-option>
@@ -13,17 +13,22 @@
         <mat-option value="two">Pasta</mat-option>
       </mat-select>
     </mat-form-field>
-    <mat-form-field appearance="outline" class="add_menu_input">
+    <mat-form-field appearance="outline" >
       <mat-label>Açıklama</mat-label>
       <textarea matInput></textarea>
     </mat-form-field>
-    <mat-form-field appearance="outline" class="add_menu_input">
+    <mat-form-field appearance="outline" >
+      <mat-label>Fiyat</mat-label>
+      <input matInput type="number">
+    </mat-form-field>
+    <mat-form-field appearance="outline" >
       <mat-label>Fiyat</mat-label>
       <input matInput type="number">
     </mat-form-field>
   </form>
 </div>
 
-<div mat-dialog-actions>
-  <button mat-button mat-dialog-close>Close</button>
+<div mat-dialog-actions class="add_menu_btn">
+  <button mat-button mat-dialog-close>Kapat</button>
+  <button mat-flat-button color="primary">Kaydet</button>
 </div>

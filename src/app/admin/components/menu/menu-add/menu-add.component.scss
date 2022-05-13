@@ -6,6 +6,11 @@ mat-form-field {
 .mat-dialog-content{
   width: 100%;
 }
-.add_menu_input{
-  width: 100%;
+mat-form-field{
+  display: block;
+}
+.add_menu_btn{
+display: flex;
+justify-content: end;
+margin-right: 1rem;
 }

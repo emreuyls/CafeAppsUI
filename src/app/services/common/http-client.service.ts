@@ -11,13 +11,13 @@ export class HttpClientService {
   private url(RequestParamater: RequestParamater):string {
     return `${RequestParamater.baseUrl?RequestParamater.baseUrl:this.baseUrl}/${RequestParamater.controller}${RequestParamater.action? `/${RequestParamater.action}`:""}`;
   }
-  get<T>(RequestParamater: RequestParamater,id?:string):Observable<T[]> {
+  get<T>(RequestParamater: RequestParamater,id?:string):Observable<T> {
     let url: string = "";
     if(RequestParamater.fullEndPoint)
       url=RequestParamater.fullEndPoint;
     else
-      url = `${this.url(RequestParamater)}${id?`/${id}`:""}`;
-   return this.clientServices.get<T[]>(url,{headers:RequestParamater.headers});
+      url = `${this.url(RequestParamater)}${id?`/${id}`:""}${RequestParamater.querystring?`?${RequestParamater.querystring}`:""}`;
+   return this.clientServices.get<T>(url,{headers:RequestParamater.headers});
   }
 
   post<T>(RequestParamater:RequestParamater,body:Partial<T>):Observable<T>{
@@ -49,6 +49,7 @@ export class HttpClientService {
 export class RequestParamater {
   controller?: string;
   action?: string;
+  querystring?:string;
   headers?: HttpHeaders;
   baseUrl?: string;
   fullEndPoint?: string;
