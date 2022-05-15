@@ -35,10 +35,15 @@
             ],
             "styles": [
               "src/styles.scss",
-              "./node_modules/semantic-ui-css/semantic.min.css"
+              "./node_modules/semantic-ui-css/semantic.min.css",
+              "./node_modules/ngx-toastr/toastr.css",
+              "./node_modules/alertifyjs/build/css/alertify.min.css",
+              "./node_modules/alertifyjs/build/css/themes/default.min.css"
             ],
             "scripts": [
-              "./node_modules/semantic-ui-css/semantic.min.js"
+              "./node_modules/semantic-ui-css/semantic.min.js",
+              "./node_modules/alertifyjs/build/alertify.min.js",
+              "./node_modules/jquery/dist/jquery.min.js"
             ]
           },
           "configurations": {

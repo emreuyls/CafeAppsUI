@@ -3,7 +3,6 @@ import { toArray } from 'rxjs';
 import { Menu } from 'src/app/model/models/Menu.model';
 import { HttpClientService } from 'src/app/services/common/http-client.service';
 
-
 @Component({
   selector: 'app-menu',
   templateUrl: './menu.component.html',
@@ -15,16 +14,6 @@ export class MenuComponent implements OnInit {
   menu:Menu[]=[];
   ngOnInit(): void {
 
-    this.clientServices.get<Menu>({
-      controller: "menu"
-    }).subscribe(
-      (success) => {
-
-      },
-      (error) => {
-        console.log(error);
-      }
-    );
   }
 
 }

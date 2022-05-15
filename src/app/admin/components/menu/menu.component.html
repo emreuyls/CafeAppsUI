@@ -1,24 +1,9 @@
- <div class="upper_place">
+
+<div class="upper_place">
   <h1 class="main_title">Menü Sayfası</h1>
   <mat-divider></mat-divider>
 </div>
-<router-outlet></router-outlet>
-
-<!--<mat-tab-group>
-  <mat-tab label="Menüler">
-    <div class="menu-button-place">
-      <button mat-flat-button color="primary" (click)="openCreateMenuDialog()">
-        <mat-icon>add</mat-icon> Ekle
-      </button>
-    </div>
-    <app-menu-table></app-menu-table>
-  </mat-tab>
-  <mat-tab label="Menü Türleri">
-    <div class="menu-button-place">
-      <button mat-flat-button color="primary" (click)="openCreateMenuTypeDialog()">
-        <mat-icon>add</mat-icon> Ekle
-      </button>
-    </div>
-    <app-menu-types></app-menu-types>
-  </mat-tab>
-</mat-tab-group> -->
+<button mat-flat-button color="primary" (click)="openCreateMenuDialog()">
+  <mat-icon>add</mat-icon> Ekle
+</button>
+<app-menu-table></app-menu-table>

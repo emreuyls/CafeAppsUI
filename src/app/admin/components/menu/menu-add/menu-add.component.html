@@ -1,34 +1,32 @@
 <h1 mat-dialog-title>Menü Ekleme</h1>
 <div mat-dialog-content>
-  <form >
-    <mat-form-field appearance="outline"   >
+  <form [formGroup]="CreateMenuFormGroup">
+    <mat-form-field appearance="outline">
       <mat-label>Yiyecek Adı</mat-label>
-      <input matInput>
+      <input type="text" matInput formControlName="title">
     </mat-form-field>
-    <mat-form-field appearance="outline" >
+    <mat-form-field appearance="outline">
+      <mat-label>Açıklama</mat-label>
+      <textarea type="text" matInput formControlName="description"></textarea>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
       <mat-label>Tür Seçiniz</mat-label>
-      <mat-select>
-        <mat-option value="one">Sıcak</mat-option>
-        <mat-option value="two">Soğuk</mat-option>
-        <mat-option value="two">Pasta</mat-option>
+      <mat-select formControlName="MenuTypesID">
+        <mat-option *ngFor="let types of menuTypesList" value="{{types.id}}" >{{types.typeName}}</mat-option>
       </mat-select>
     </mat-form-field>
-    <mat-form-field appearance="outline" >
-      <mat-label>Açıklama</mat-label>
-      <textarea matInput></textarea>
-    </mat-form-field>
-    <mat-form-field appearance="outline" >
+    <mat-form-field appearance="outline">
       <mat-label>Fiyat</mat-label>
-      <input matInput type="number">
+      <input  type="number" matInput formControlName="price">
     </mat-form-field>
-    <mat-form-field appearance="outline" >
-      <mat-label>Fiyat</mat-label>
-      <input matInput type="number">
+    <mat-form-field appearance="outline">
+      <mat-label>Resim</mat-label>
+      <input type="text" matInput formControlName="img">
     </mat-form-field>
   </form>
 </div>
 
 <div mat-dialog-actions class="add_menu_btn">
   <button mat-button mat-dialog-close>Kapat</button>
-  <button mat-flat-button color="primary">Kaydet</button>
+  <button mat-flat-button color="primary"(click)="onSubmit(CreateMenuFormGroup.value)" >Kaydet</button>
 </div>

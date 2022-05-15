@@ -1,14 +1,14 @@
 <h1 mat-dialog-title>Menü Ekleme</h1>
 <div mat-dialog-content>
-  <form >
-    <mat-form-field appearance="outline"   >
+  <form [formGroup]="menuTypesFormGroup">
+    <mat-form-field appearance="outline">
       <mat-label>Menü Türü</mat-label>
-      <input matInput>
+      <input type="text" matInput formControlName="typeName">
     </mat-form-field>
   </form>
 </div>
 
 <div mat-dialog-actions class="add_menu_btn">
   <button mat-button mat-dialog-close>Kapat</button>
-  <button mat-flat-button color="primary">Kaydet</button>
+  <button mat-flat-button color="primary" (click)="SubmitForm(menuTypesFormGroup.value)">Kaydet</button>
 </div>
