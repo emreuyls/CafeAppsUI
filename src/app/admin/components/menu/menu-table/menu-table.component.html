@@ -4,30 +4,35 @@
 
     <!-- Position Column -->
     <ng-container matColumnDef="title">
-      <th mat-header-cell *matHeaderCellDef> No. </th>
+      <th mat-header-cell *matHeaderCellDef ngClass="tableColumn"> Ürün Adı </th>
       <td mat-cell *matCellDef="let element"> {{element.title}} </td>
     </ng-container>
 
     <!-- Name Column -->
     <ng-container matColumnDef="description">
-      <th mat-header-cell *matHeaderCellDef> Name </th>
+      <th mat-header-cell *matHeaderCellDef ngClass="tableColumn" > Açıklama </th>
       <td mat-cell *matCellDef="let element"> {{element.description}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="price">
+      <th mat-header-cell *matHeaderCellDef ngClass="tableColumn"> Fiyat </th>
+      <td mat-cell *matCellDef="let element"> {{element.price|currency:'₺'}} </td>
     </ng-container>
 
     <!-- Weight Column -->
     <ng-container matColumnDef="menuTypes">
-      <th mat-header-cell *matHeaderCellDef> Weight </th>
-      <td mat-cell *matCellDef="let element"> {{element.menuTypes.nametypes}} </td>
+      <th mat-header-cell *matHeaderCellDef ngClass="tableColumn"> Tür </th>
+      <td mat-cell *matCellDef="let element"> {{element.menuTypes.typeName}} </td>
     </ng-container>
 
     <!-- Symbol Column -->
     <ng-container matColumnDef="createTime">
-      <th mat-header-cell *matHeaderCellDef> Symbol </th>
+      <th mat-header-cell *matHeaderCellDef ngClass="tableColumn"> Oluşturulma Tarihi </th>
       <td mat-cell *matCellDef="let element"> {{element.createTime|date}} </td>
     </ng-container>
 
-    <ng-container matColumnDef="updateTime">
-      <th mat-header-cell *matHeaderCellDef> Symbol </th>
+    <ng-container matColumnDef="updateTime" >
+      <th mat-header-cell *matHeaderCellDef ngClass="tableColumn"> Güncelleme Tarihi </th>
       <td mat-cell *matCellDef="let element"> {{element.updateTime|date}} </td>
     </ng-container>
 
@@ -36,6 +41,7 @@
   </table>
 
   <mat-paginator [pageSizeOptions]="[5, 10, 20]"
+                  (page)="PageChanged()"
                  showFirstLastButtons
                  aria-label="Select page of periodic elements">
   </mat-paginator>

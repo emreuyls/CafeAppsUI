@@ -1,1 +1,13 @@
-<p>table works!</p>
+<div class="upper_place">
+  <h1 class="main_title">Masalar</h1>
+  <mat-divider></mat-divider>
+</div>
+<div class="menu-button-place">
+  <button mat-flat-button color="primary" (click)="openCreateTableDialog()">
+    <mat-icon>add</mat-icon> Ekle
+  </button>
+</div>
+<mat-grid-list cols="4" rowHeight="500px" >
+  <mat-grid-tile colspan="1" rowspan="1" *ngFor="let data of table"><app-card-table style="width: 100%;" [model]="data">{{data}}</app-card-table></mat-grid-tile>
+
+</mat-grid-list>

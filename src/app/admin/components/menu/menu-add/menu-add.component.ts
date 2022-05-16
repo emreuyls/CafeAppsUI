@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
-import {  CreateMenuViewModel } from 'src/app/model/viewModels/Menu/CreateMenu.viewmodel';
+import { MatDialogRef } from '@angular/material/dialog';
+import { CreateMenuViewModel } from 'src/app/model/viewModels/Menu/CreateMenu.viewmodel';
 import { MenuTypesViewModel } from 'src/app/model/viewModels/MenuTypes/MenuTypes.viewmodel';
 import { MenuService } from 'src/app/services/admin/menu.service';
 import { CustomToastrService, ToastrMessageType, ToastrPosition } from 'src/app/services/common/custom-toastr.service';
@@ -12,7 +13,7 @@ import { CustomToastrService, ToastrMessageType, ToastrPosition } from 'src/app/
 export class MenuAddComponent implements OnInit {
 
 
-  constructor(private formBuilder: FormBuilder, private services: MenuService, private message: CustomToastrService) { }
+  constructor(private formBuilder: FormBuilder, private services: MenuService, private message: CustomToastrService, private dialogRef: MatDialogRef<MenuAddComponent>,) { dialogRef.disableClose=true}
   menuTypesList: MenuTypesViewModel[];
   CreateMenuFormGroup = new FormGroup({
     title: new FormControl(''),
@@ -30,15 +31,16 @@ export class MenuAddComponent implements OnInit {
   onSubmit(data: CreateMenuViewModel) {
     this.services.CreateMenu(data,
       () => {
+        this.dialogRef.close();
         this.message.message("Kayıt Başarılı", "Başarılı", {
           position: ToastrPosition.TopRight,
           messageType: ToastrMessageType.Success
         });
       }
       , () => {
-        this.message.message("Kayıt Başarısız","Başarısız",{
-          position:ToastrPosition.TopRight,
-          messageType:ToastrMessageType.Error
+        this.message.message("Kayıt Başarısız", "Başarısız", {
+          position: ToastrPosition.TopRight,
+          messageType: ToastrMessageType.Error
         })
       }
     );

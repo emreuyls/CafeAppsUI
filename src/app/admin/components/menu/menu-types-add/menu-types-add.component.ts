@@ -13,7 +13,7 @@ import { MenuTypesComponent } from '../menu-types/menu-types.component';
 })
 export class MenuTypesAddComponent implements OnInit {
 
-  constructor(private services: MenuService, private formBuilder: FormBuilder, private dialogRef: MatDialogRef<MenuTypesComponent>, private toastr: CustomToastrService) { }
+  constructor(private services: MenuService, private formBuilder: FormBuilder, private dialogRef: MatDialogRef<MenuTypesComponent>, private toastr: CustomToastrService) { dialogRef.disableClose=true}
   menuTypesFormGroup: FormGroup;
 
   ngOnInit(): void {

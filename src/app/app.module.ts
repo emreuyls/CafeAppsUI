@@ -20,6 +20,7 @@ import { ToastrModule } from 'ngx-toastr';
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
     HttpClientModule,
+
   ],
   providers: [
     {provide:"baseUrl",useValue:"https://localhost:5001",multi:true}

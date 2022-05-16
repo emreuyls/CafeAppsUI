@@ -16,15 +16,7 @@ export class MenuComponent implements OnInit {
   }
   openCreateMenuDialog() {
     this.dialog.open(MenuAddComponent, {
-      width: '600px',
-      hasBackdrop: false
-    });
-
-  }
-  openCreateMenuTypeDialog() {
-    this.dialog.open(MenuTypesAddComponent, {
-      width: '600px',
-      hasBackdrop: false
-    });
+      width: '600px'
+    }).afterClosed().subscribe();
   }
 }

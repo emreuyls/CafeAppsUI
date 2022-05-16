@@ -1,0 +1,32 @@
+<mat-card class="Table-card">
+  <mat-card-header>
+    <mat-card-title>{{model.tableName}}</mat-card-title>
+    <mat-card-subtitle>{{model.tableLocation}}</mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content>
+    <p>
+      <mat-list>
+        <div mat-subheader ngClass="card-subhead">Mevcut Durum</div>
+        <mat-list-item>
+          <div mat-line>{{model.status?"Dolu":"Boşta"}}</div>
+        </mat-list-item>
+        <mat-divider></mat-divider>
+        <div mat-subheader>Tutar</div>
+        <mat-list-item>
+          <div mat-line>23 TL</div>
+        </mat-list-item>
+        <mat-divider></mat-divider>
+        <div mat-subheader>Oturum Süresi</div>
+        <mat-list-item>
+          <div mat-line>{{model.updateDate|date:'HH:MM')}</div>
+        </mat-list-item>
+        <mat-divider></mat-divider>
+
+      </mat-list>
+    </p>
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-raised-button color="primary">Hesabı Görüntüle</button>
+    <button mat-raised-button color="warn">Siparişler</button>
+  </mat-card-actions>
+</mat-card>

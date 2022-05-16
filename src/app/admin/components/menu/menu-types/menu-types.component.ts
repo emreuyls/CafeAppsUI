@@ -3,7 +3,6 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { MenuService } from 'src/app/services/admin/menu.service';
 import { MenuTypesTableViewModel, MenuTypesViewModel } from 'src/app/model/viewModels/MenuTypes/MenuTypes.viewmodel';
-import { HttpClientService } from 'src/app/services/common/http-client.service';
 import { MenuTypesAddComponent } from '../menu-types-add/menu-types-add.component';
 import { MatDialog } from '@angular/material/dialog';
 @Component({
@@ -13,7 +12,7 @@ import { MatDialog } from '@angular/material/dialog';
 })
 export class MenuTypesComponent implements OnInit {
   displayedColumns: string[] = ['typeName','delete'];
-  constructor(private services: MenuService, private httpClient: HttpClientService, public dialog: MatDialog) {
+  constructor(private services: MenuService, public dialog: MatDialog) {
   }
   dataSource: MatTableDataSource<MenuTypesViewModel> = new MatTableDataSource<MenuTypesViewModel>();
   @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -26,6 +25,7 @@ export class MenuTypesComponent implements OnInit {
       () => console.log("Başarılı"), () => console.log("hata")
     );
     this.dataSource = new MatTableDataSource<MenuTypesViewModel>(promiseData.menuTypesModel);
+
     this.paginator.length = promiseData.tableCount;
   }
   async PageChanged() {
@@ -33,8 +33,7 @@ export class MenuTypesComponent implements OnInit {
   }
   openCreateMenuTypeDialog() {
     const dialogRef = this.dialog.open(MenuTypesAddComponent, {
-      width: '600px',
-      hasBackdrop: false
+      width: '600px'
     }).afterClosed().subscribe();
 
   }

@@ -1,0 +1,21 @@
+<h1 mat-dialog-title>Yeni Masa Ekle</h1>
+<div mat-dialog-content>
+  <form [formGroup]="CreateMenuFormGroup">
+    <mat-form-field appearance="outline">
+      <mat-label>Masa Adı</mat-label>
+      <input type="text" matInput formControlName="tableName" required>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Masa Bölgesi</mat-label>
+      <input type="text" matInput formControlName="tableLocation" required>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Masa Kapasitesi</mat-label>
+      <input type="number" matInput formControlName="capaticty" required>
+    </mat-form-field>
+  </form>
+</div>
+<div mat-dialog-actions class="add_menu_btn">
+  <button mat-raised-button mat-dialog-close color="warn">İptal</button>
+  <button mat-raised-button (click)="onSubmit(CreateMenuFormGroup.value)" color="primary">Kaydet</button>
+</div>

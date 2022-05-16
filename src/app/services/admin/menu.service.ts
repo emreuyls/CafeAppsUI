@@ -18,17 +18,17 @@ export class MenuService {
       controller: "menu",
       action: "create"
     }, data));
-    model.then()
-      .catch();
+    model.then(s=>successCallBack())
+      .catch(e=>errorCallBack());
 
   }
-  async GetAllMenu(): Promise<TableMenuViewModel[]> {
-    const model: Promise<TableMenuViewModel[]> =  firstValueFrom(this.httpClient.get<TableMenuViewModel[]>({
+  async GetMenuTable(page:number=0,size:number=5): Promise<TableMenuViewModel> {
+    const model: Promise<TableMenuViewModel> =  firstValueFrom(this.httpClient.get<TableMenuViewModel>({
       controller: "menu",
-      action: "GetAll"
+      action: "GetMenuTable",
+      querystring:`page=${page}&size=${size}`
     }));
-
-    return model;
+    return await model;
   }
   CreateMenuTypes(model: MenutypeAddViewModel, successCallBack: () => void, errorcallBack: () => void) {
     this.httpClient.post<MenutypeAddViewModel>({
