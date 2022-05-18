@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MenuAddComponent } from './menu-add/menu-add.component';
-import { MenuTypesAddComponent } from './menu-types-add/menu-types-add.component';
+import { MenuTableComponent } from './menu-table/menu-table.component';
 
 @Component({
   selector: 'app-menu',
@@ -11,12 +11,12 @@ import { MenuTypesAddComponent } from './menu-types-add/menu-types-add.component
 export class MenuComponent implements OnInit {
 
   constructor(public dialog: MatDialog) { }
-
+@ViewChild(MenuTableComponent) child:MenuTableComponent;
   ngOnInit(): void {
   }
   openCreateMenuDialog() {
     this.dialog.open(MenuAddComponent, {
       width: '600px'
-    }).afterClosed().subscribe();
+    }).afterClosed().subscribe(result=>result?this.child.getPage():"");
   }
 }

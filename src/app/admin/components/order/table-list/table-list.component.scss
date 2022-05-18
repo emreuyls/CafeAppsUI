@@ -1,0 +1,11 @@
+table {
+  width: 100%;
+}
+.order-button-side{
+  margin: 20px;
+  display: flex;
+  justify-content: end;
+}
+.order-active{
+  background-color:rgba(125, 250, 0, 0.43);
+}

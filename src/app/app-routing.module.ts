@@ -15,7 +15,9 @@ const routes: Routes = [
   {
     path: "", component: HomeComponent, children: [
       { path: "", loadChildren: () => import("./ui/components/home/home.module").then(module => module.HomeModule) },
-      { path: "menu", loadChildren: () => import("./ui/components/menu/menu.module").then(module => module.MenuModule) }
+      { path: "menu", loadChildren: () => import("./ui/components/menu/menu.module").then(module => module.MenuModule) },
+      { path: "table", loadChildren: () => import("./ui/components/table/table.module").then(module=>module.TableModule)}
+
     ]
   }
 ];

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit } from '@angular/core';
 import { async } from '@angular/core/testing';
 import { MatDialog } from '@angular/material/dialog';
 import { GetTableViewModel } from 'src/app/model/viewModels/Table/TableGet.viewmodel';
@@ -21,6 +21,6 @@ export class TableComponent implements OnInit {
   openCreateTableDialog() {
     const dialogRef = this.dialog.open(CreateTableComponent, {
       width: '600px',
-    });
+    }).afterClosed().subscribe(a=>a?this.ngOnInit:"");
   }
 }

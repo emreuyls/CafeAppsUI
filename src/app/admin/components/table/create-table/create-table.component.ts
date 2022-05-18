@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 import { TableCreateViewModel } from 'src/app/model/viewModels/Table/TableCreate.viewmodel';
@@ -11,7 +11,7 @@ import { CustomToastrService, ToastrMessageType, ToastrPosition } from 'src/app/
   styleUrls: ['./create-table.component.scss']
 })
 export class CreateTableComponent implements OnInit {
-  // TableCreateViewModel
+  @Output() RefreshTable:EventEmitter<any>=new EventEmitter();
   constructor(public dialogRef: MatDialogRef<CreateTableComponent>,
     private services: TableService,
     private toastr: CustomToastrService
@@ -28,7 +28,8 @@ export class CreateTableComponent implements OnInit {
   }
   onSubmit(data: TableCreateViewModel) {
     this.services.CreateTable(data, () => {
-      this.dialogRef.close();
+      this.dialogRef.close(true);
+      this.RefreshTable.emit();
       this.toastr.message("Masa başarı ile kayıt oldu", "Kayıt Başarılı", {
         position: ToastrPosition.TopRight,
         messageType: ToastrMessageType.Success

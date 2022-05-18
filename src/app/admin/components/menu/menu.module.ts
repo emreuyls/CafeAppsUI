@@ -19,6 +19,8 @@ import { MenuTypesAddComponent } from './menu-types-add/menu-types-add.component
 import { ReactiveFormsModule } from '@angular/forms';
 import { DeleteDirective } from 'src/app/directives/delete.directive';
 import { ConfirmDialogComponent } from 'src/app/Dialog/confirm-dialog/confirm-dialog.component';
+import { UpdateMenuTypesComponent } from './update-menu-types/update-menu-types.component';
+import { MenuUpdateComponent } from './menu-update/menu-update.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +30,9 @@ import { ConfirmDialogComponent } from 'src/app/Dialog/confirm-dialog/confirm-di
     MenuTypesComponent,
     MenuTypesAddComponent,
     DeleteDirective,
-    ConfirmDialogComponent
+    ConfirmDialogComponent,
+    UpdateMenuTypesComponent,
+    MenuUpdateComponent
   ],
   imports: [
     CommonModule,

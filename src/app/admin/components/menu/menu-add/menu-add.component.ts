@@ -26,12 +26,11 @@ export class MenuAddComponent implements OnInit {
   async ngOnInit() {
 
     this.menuTypesList = await this.services.GetAllMenuTypes();
-    console.log(this.menuTypesList)
   }
   onSubmit(data: CreateMenuViewModel) {
     this.services.CreateMenu(data,
       () => {
-        this.dialogRef.close();
+        this.dialogRef.close(true);
         this.message.message("Kayıt Başarılı", "Başarılı", {
           position: ToastrPosition.TopRight,
           messageType: ToastrMessageType.Success

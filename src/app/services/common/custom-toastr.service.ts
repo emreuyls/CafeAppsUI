@@ -7,16 +7,20 @@ import { Toast, ToastrService } from 'ngx-toastr';
 export class CustomToastrService {
 
   constructor(private toastr: ToastrService) {
+
   }
   message(message: string, title: string, toastrOption:ToastrOption) {
     this.toastr[toastrOption.messageType](message, title,{
-      positionClass:toastrOption.position
+      positionClass:toastrOption.position,
+
     });
   }
 }
 export class ToastrOption{
   messageType:ToastrMessageType=ToastrMessageType.Success;
   position?:ToastrPosition=ToastrPosition.TopRight;
+  timeout?:500;
+  preventOpenDuplicates?:false;
 }
 export enum ToastrMessageType {
   Success = "success",

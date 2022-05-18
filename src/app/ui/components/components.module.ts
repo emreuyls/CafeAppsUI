@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HomeModule } from './home/home.module';
+import { TableModule } from './table/table.module';
 
 
 
@@ -10,7 +11,8 @@ import { HomeModule } from './home/home.module';
   ],
   imports: [
     CommonModule,
-    HomeModule
+    HomeModule,
+    TableModule
   ],
   exports:[
     HomeModule

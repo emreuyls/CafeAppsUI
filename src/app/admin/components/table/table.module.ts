@@ -14,11 +14,15 @@ import {MatIconModule} from '@angular/material/icon';
 import { ReactiveFormsModule } from '@angular/forms';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
+import { ShowAccountComponent } from './show-account/show-account.component';
+import { ShowOrderComponent } from './show-order/show-order.component';
 @NgModule({
   declarations: [
     TableComponent,
     CreateTableComponent,
-    CardTableComponent
+    CardTableComponent,
+    ShowAccountComponent,
+    ShowOrderComponent
   ],
   imports: [
     CommonModule,
@@ -32,9 +36,7 @@ import {MatInputModule} from '@angular/material/input';
     MatDividerModule,
     MatDialogModule,
     MatIconModule,
-    MatInputModule
-
-  ],
+    MatInputModule  ],
   exports: [
     TableComponent
   ]

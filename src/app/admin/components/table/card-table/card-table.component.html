@@ -18,7 +18,8 @@
         <mat-divider></mat-divider>
         <div mat-subheader>Oturum Süresi</div>
         <mat-list-item>
-          <div mat-line>{{model.updateDate|date:'HH:MM')}</div>
+          <!--Zaman ayalarması yapılcacak-->
+          <div mat-line>{{model.updateDate|date:'HH:MM'}}</div>
         </mat-list-item>
         <mat-divider></mat-divider>
 
@@ -26,7 +27,7 @@
     </p>
   </mat-card-content>
   <mat-card-actions>
-    <button mat-raised-button color="primary">Hesabı Görüntüle</button>
-    <button mat-raised-button color="warn">Siparişler</button>
+    <button (click)="openAccountDialog()" mat-raised-button color="primary">Hesabı Görüntüle</button>
+    <button (click)="openOrderDialog()" mat-raised-button color="warn">Siparişler</button>
   </mat-card-actions>
 </mat-card>

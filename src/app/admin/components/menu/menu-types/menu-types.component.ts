@@ -5,13 +5,14 @@ import { MenuService } from 'src/app/services/admin/menu.service';
 import { MenuTypesTableViewModel, MenuTypesViewModel } from 'src/app/model/viewModels/MenuTypes/MenuTypes.viewmodel';
 import { MenuTypesAddComponent } from '../menu-types-add/menu-types-add.component';
 import { MatDialog } from '@angular/material/dialog';
+import { UpdateMenuTypesComponent } from '../update-menu-types/update-menu-types.component';
 @Component({
   selector: 'app-menu-types',
   templateUrl: './menu-types.component.html',
   styleUrls: ['./menu-types.component.scss']
 })
 export class MenuTypesComponent implements OnInit {
-  displayedColumns: string[] = ['typeName','delete'];
+  displayedColumns: string[] = ['typeName','update','delete'];
   constructor(private services: MenuService, public dialog: MatDialog) {
   }
   dataSource: MatTableDataSource<MenuTypesViewModel> = new MatTableDataSource<MenuTypesViewModel>();
@@ -34,7 +35,13 @@ export class MenuTypesComponent implements OnInit {
   openCreateMenuTypeDialog() {
     const dialogRef = this.dialog.open(MenuTypesAddComponent, {
       width: '600px'
-    }).afterClosed().subscribe();
+    }).afterClosed().subscribe(result=>result?this.GetMenuTypes():"");
+  }
 
+  openUpdateMenuTypesDialog(data:MenuTypesViewModel){
+    const dialogRef=this.dialog.open(UpdateMenuTypesComponent,{
+      width:'600px',
+      data:data
+    }).afterClosed().subscribe(result=>result?this.GetMenuTypes():"");
   }
 }

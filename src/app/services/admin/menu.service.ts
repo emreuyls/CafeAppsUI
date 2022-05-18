@@ -18,15 +18,15 @@ export class MenuService {
       controller: "menu",
       action: "create"
     }, data));
-    model.then(s=>successCallBack())
-      .catch(e=>errorCallBack());
+    model.then(s => successCallBack())
+      .catch(e => errorCallBack());
 
   }
-  async GetMenuTable(page:number=0,size:number=5): Promise<TableMenuViewModel> {
-    const model: Promise<TableMenuViewModel> =  firstValueFrom(this.httpClient.get<TableMenuViewModel>({
+  async GetMenuTable(page: number = 0, size: number = 5): Promise<TableMenuViewModel> {
+    const model: Promise<TableMenuViewModel> = firstValueFrom(this.httpClient.get<TableMenuViewModel>({
       controller: "menu",
       action: "GetMenuTable",
-      querystring:`page=${page}&size=${size}`
+      querystring: `page=${page}&size=${size}`
     }));
     return await model;
   }
@@ -63,6 +63,22 @@ export class MenuService {
       controller: "menutypes"
     }, id))
       .then(s => successCallBack());
+
+  }
+
+  UpdateMenuTypes(data: MenuTypesViewModel, successCallBack: () => void, errorcallBack: () => void) {
+    this.httpClient.put({
+      controller: "menutypes",
+      action: "UpdateMenuTypes"
+    }, data).subscribe(
+      (success) => {
+        successCallBack()
+      },
+      (error) => {
+        errorcallBack()
+      }
+
+    )
 
   }
 }

@@ -1,0 +1,30 @@
+<mat-tab-group dynamicHeight>
+  <mat-tab bodyClass="table-body" *ngFor="let menuTypes of menutypes" label="{{menuTypes.typeName}}">
+    <div class="ui stackable four column grid">
+      <div class="column" *ngFor="let Menu of menuTypes.menus">
+        <div class="ui card">
+          <div class="image">
+            <img src="/assets/çay.png">
+          </div>
+          <div class="content">
+            <a class="header">{{Menu.title}}</a>
+            <div class="meta">
+              <p>{{Menu.price|currency:"₺"}}</p>
+            </div>
+            <div class="description">
+              {{Menu.description}}
+            </div>
+          </div>
+          <div class="extra content">
+            <div class="ui animated button" tabindex="0">
+              <div class="visible content">Sipariş Ver</div>
+              <div class="hidden content">
+                <i class="add icon"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </mat-tab>
+</mat-tab-group>

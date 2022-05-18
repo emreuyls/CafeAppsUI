@@ -12,6 +12,7 @@ import { TableModule } from './table/table.module';
   imports: [
     CommonModule,
     MenuModule,
+    TableModule
 
   ],
   exports:[

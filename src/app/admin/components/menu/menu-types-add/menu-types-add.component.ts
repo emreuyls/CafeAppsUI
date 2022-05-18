@@ -24,7 +24,7 @@ export class MenuTypesAddComponent implements OnInit {
 
   SubmitForm(data: MenutypeAddViewModel) {
     this.services.CreateMenuTypes(data, () => {
-      this.dialogRef.close();
+      this.dialogRef.close(true);
       this.toastr.message(`${data.typeName} Başarı İle Kayıt Edildi.`, "Kayıt Başarılı", {
         messageType: ToastrMessageType.Success,
         position: ToastrPosition.TopRight
