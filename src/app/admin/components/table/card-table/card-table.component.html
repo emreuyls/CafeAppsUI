@@ -1,6 +1,6 @@
 <mat-card class="Table-card">
   <mat-card-header>
-    <mat-card-title>{{model.tableName}}</mat-card-title>
+    <mat-card-title (click)="openTableDialog()">{{model.tableName}}</mat-card-title>
     <mat-card-subtitle>{{model.tableLocation}}</mat-card-subtitle>
   </mat-card-header>
   <mat-card-content>

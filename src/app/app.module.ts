@@ -11,6 +11,7 @@ import { ToastrModule } from 'ngx-toastr';
 @NgModule({
   declarations: [
     AppComponent
+
   ],
   imports: [
     BrowserModule,
@@ -19,11 +20,11 @@ import { ToastrModule } from 'ngx-toastr';
     UiModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
-    HttpClientModule,
+    HttpClientModule
 
   ],
   providers: [
-    {provide:"baseUrl",useValue:"https://localhost:5001",multi:true}
+    {provide:"baseUrl",useValue:"https://localhost:5001",multi:true},
   ],
   bootstrap: [AppComponent]
 })

@@ -16,13 +16,15 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 import { ShowAccountComponent } from './show-account/show-account.component';
 import { ShowOrderComponent } from './show-order/show-order.component';
+import { ShowTableComponent } from './show-table/show-table.component';
 @NgModule({
   declarations: [
     TableComponent,
     CreateTableComponent,
     CardTableComponent,
     ShowAccountComponent,
-    ShowOrderComponent
+    ShowOrderComponent,
+    ShowTableComponent
   ],
   imports: [
     CommonModule,

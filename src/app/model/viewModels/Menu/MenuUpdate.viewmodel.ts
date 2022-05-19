@@ -1,7 +1,9 @@
 export interface UpdateMenuViewModel{
+  id:string,
   title:string,
   description:string,
-  ımg:string,
   price:number,
-  MenuTypesID:string
+  MenuTypesID:string,
+  updateTime:Date,
+  CreateTime:Date
   }

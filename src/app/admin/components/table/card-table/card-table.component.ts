@@ -3,6 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { GetTableViewModel } from 'src/app/model/viewModels/Table/TableGet.viewmodel';
 import { ShowAccountComponent } from '../show-account/show-account.component';
 import { ShowOrderComponent } from '../show-order/show-order.component';
+import { ShowTableComponent } from '../show-table/show-table.component';
 
 @Component({
   selector: 'app-card-table',
@@ -14,6 +15,7 @@ export class CardTableComponent implements OnInit {
   constructor(public dialog: MatDialog) { }
   @Input() model: GetTableViewModel;
   time: Date;
+  @Output() callback:EventEmitter<any>=new EventEmitter();
   ngOnInit(): void {
   }
   openAccountDialog(): void {
@@ -30,5 +32,10 @@ export class CardTableComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe();
   }
-
+  openTableDialog(){
+    const dialogRef=this.dialog.open(ShowTableComponent,{
+      width:'600px',
+      data:this.model
+    }).afterClosed().subscribe(result=>result?this.callback.emit():"");
+  }
 }

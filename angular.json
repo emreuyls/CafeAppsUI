@@ -38,7 +38,8 @@
               "./node_modules/semantic-ui-css/semantic.min.css",
               "./node_modules/ngx-toastr/toastr.css",
               "./node_modules/alertifyjs/build/css/alertify.min.css",
-              "./node_modules/alertifyjs/build/css/themes/default.min.css"
+              "./node_modules/alertifyjs/build/css/themes/default.min.css",
+              "./node_modules/flexboxgrid/dist/flexboxgrid.min.css"
             ],
             "scripts": [
               "./node_modules/jquery/dist/jquery.min.js",

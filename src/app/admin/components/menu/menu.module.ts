@@ -21,6 +21,7 @@ import { DeleteDirective } from 'src/app/directives/delete.directive';
 import { ConfirmDialogComponent } from 'src/app/Dialog/confirm-dialog/confirm-dialog.component';
 import { UpdateMenuTypesComponent } from './update-menu-types/update-menu-types.component';
 import { MenuUpdateComponent } from './menu-update/menu-update.component';
+import { TextOverFlowPipe } from 'src/app/pipes/common/text-over-flow.pipe';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { MenuUpdateComponent } from './menu-update/menu-update.component';
     DeleteDirective,
     ConfirmDialogComponent,
     UpdateMenuTypesComponent,
-    MenuUpdateComponent
+    MenuUpdateComponent,
+    TextOverFlowPipe
   ],
   imports: [
     CommonModule,

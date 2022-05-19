@@ -35,10 +35,11 @@ export class MenuTableComponent implements OnInit, AfterViewInit {
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
   }
-  openUpdateMenuDialog(data:UpdateMenuViewModel){
+  openUpdateMenuDialog(menuData:UpdateMenuViewModel){
+    console.log(menuData)
     this.dialog.open(MenuUpdateComponent,{
       width:'600px',
-      data:data
-    }).afterClosed().subscribe();
+      data:menuData
+    }).afterClosed().subscribe(result=>result?this.getPage():"");
   }
 }

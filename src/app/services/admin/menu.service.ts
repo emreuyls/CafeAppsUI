@@ -6,6 +6,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { MenutypeAddViewModel } from 'src/app/model/viewModels/MenuTypes/MenuTypesAdd.ViewModel';
 import { CreateMenuViewModel } from 'src/app/model/viewModels/Menu/CreateMenu.viewmodel';
 import { TableMenuViewModel } from 'src/app/model/viewModels/Menu/MenuTable.viewmodel';
+import { UpdateMenuViewModel } from 'src/app/model/viewModels/Menu/MenuUpdate.viewmodel';
 @Injectable({
   providedIn: 'root'
 })
@@ -30,6 +31,20 @@ export class MenuService {
     }));
     return await model;
   }
+  UpdateMenu(data: UpdateMenuViewModel, successCallBack: () => void, errorCallBack: () => void) {
+    this.httpClient.put({
+      controller: "Menu",
+      action: "UpdateMenu"
+    }, data).subscribe(
+      (success) => {
+        successCallBack()
+      },
+      (error) => { errorCallBack() }
+    );
+  }
+
+
+  /*Menu Types Area*/
   CreateMenuTypes(model: MenutypeAddViewModel, successCallBack: () => void, errorcallBack: () => void) {
     this.httpClient.post<MenutypeAddViewModel>({
       controller: "MenuTypes"

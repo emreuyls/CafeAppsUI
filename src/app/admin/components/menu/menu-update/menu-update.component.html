@@ -1,6 +1,7 @@
 <h1 mat-dialog-title>Menü Ekleme</h1>
 <div mat-dialog-content>
   <form [formGroup]="UpdateMenuFormGroup">
+    <input type="hidden" formControlName="id">
     <mat-form-field appearance="outline">
       <mat-label>Yiyecek Adı</mat-label>
       <input type="text" matInput formControlName="title">
@@ -9,19 +10,16 @@
       <mat-label>Açıklama</mat-label>
       <textarea type="text" matInput formControlName="description"></textarea>
     </mat-form-field>
+
     <mat-form-field appearance="outline">
       <mat-label>Tür Seçiniz</mat-label>
       <mat-select formControlName="MenuTypesID">
-        <mat-option *ngFor="let types of menuTypesList" value="{{types.id}}" >{{types.typeName}}</mat-option>
+        <mat-option *ngFor="let types of menuTypesList"  value="{{types.id}}">{{types.typeName}}</mat-option>
       </mat-select>
     </mat-form-field>
     <mat-form-field appearance="outline">
       <mat-label>Fiyat</mat-label>
       <input  type="number" matInput formControlName="price">
-    </mat-form-field>
-    <mat-form-field appearance="outline">
-      <mat-label>Resim</mat-label>
-      <input type="text" matInput formControlName="img">
     </mat-form-field>
   </form>
 </div>

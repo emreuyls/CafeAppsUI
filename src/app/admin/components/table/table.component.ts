@@ -21,6 +21,6 @@ export class TableComponent implements OnInit {
   openCreateTableDialog() {
     const dialogRef = this.dialog.open(CreateTableComponent, {
       width: '600px',
-    }).afterClosed().subscribe(a=>a?this.ngOnInit:"");
+    }).afterClosed().subscribe(a => a ? this.ngOnInit : "");
   }
 }
