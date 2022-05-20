@@ -1,7 +1,7 @@
-<mat-expansion-panel hideToggle class="order-panel order-active">
+<mat-expansion-panel  hideToggle class="order-panel ">
   <mat-expansion-panel-header>
     <mat-panel-title>
-      Masa-1
+      {{dataModel.tableName}}
     </mat-panel-title>
     <mat-panel-description>
       Yeni Sipariş Var
@@ -9,15 +9,10 @@
   </mat-expansion-panel-header>
   <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
 
-    <!--- Note that these columns can be defined in any order.
-          The actual rendered columns are set as a property on the row definition" -->
-
-    <!-- Position Column -->
     <ng-container matColumnDef="orderName">
       <th mat-header-cell *matHeaderCellDef> Sipariş Adı </th>
       <td mat-cell *matCellDef="let element"> {{element.orderName}} </td>
     </ng-container>
-
     <!-- Name Column -->
     <ng-container matColumnDef="piece">
       <th mat-header-cell *matHeaderCellDef> Adet </th>
@@ -38,6 +33,8 @@
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
   </table>
   <div class="order-button-side">
+    <button mat-raised-button color="primary"(click)="AddNewOrder()" > Yeni Sipariş</button>
+
     <button mat-raised-button color="primary"> Siparişi Onayla</button>
   </div>
 </mat-expansion-panel>

@@ -7,6 +7,8 @@ import { MenutypeAddViewModel } from 'src/app/model/viewModels/MenuTypes/MenuTyp
 import { CreateMenuViewModel } from 'src/app/model/viewModels/Menu/CreateMenu.viewmodel';
 import { TableMenuViewModel } from 'src/app/model/viewModels/Menu/MenuTable.viewmodel';
 import { UpdateMenuViewModel } from 'src/app/model/viewModels/Menu/MenuUpdate.viewmodel';
+import { GetMenuListViewModel } from 'src/app/model/viewModels/Menu/GetMenuList.viewmodel';
+import { async } from '@angular/core/testing';
 @Injectable({
   providedIn: 'root'
 })
@@ -42,7 +44,14 @@ export class MenuService {
       (error) => { errorCallBack() }
     );
   }
-
+  async getMenuList():Promise<GetMenuListViewModel[]>
+  {
+    const menuModel:Promise<GetMenuListViewModel[]>=firstValueFrom(this.httpClient.get<GetMenuListViewModel[]>({
+      controller:"Menu",
+      action:"GetMenuList"
+    }));
+    return await menuModel;
+  }
 
   /*Menu Types Area*/
   CreateMenuTypes(model: MenutypeAddViewModel, successCallBack: () => void, errorcallBack: () => void) {

@@ -24,7 +24,7 @@ import { ShowTableComponent } from './show-table/show-table.component';
     CardTableComponent,
     ShowAccountComponent,
     ShowOrderComponent,
-    ShowTableComponent
+    ShowTableComponent,
   ],
   imports: [
     CommonModule,

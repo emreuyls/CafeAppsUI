@@ -46,4 +46,17 @@ export class TableService {
       }
     );
   }
+  deleteTable(id:string,successCallBack:()=>void,errorcallBack:()=>void){
+    this.httpServices.delete({
+      controller:"table",
+      action:"DeleteTable"
+    },id).subscribe(
+      (success)=>{
+        successCallBack()
+      },
+      (error)=>{
+        errorcallBack()
+      }
+    );
+  }
 }

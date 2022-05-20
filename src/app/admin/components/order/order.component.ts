@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { OrderGetAllTableWithViewTable } from 'src/app/model/viewModels/Order/GetAllTableWithOrder.viewmodel';
+import { OrderService } from 'src/app/services/admin/order.service';
 
 @Component({
   selector: 'app-order',
@@ -7,9 +9,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class OrderComponent implements OnInit {
 
-  constructor() { }
+  constructor(private services: OrderService) { }
 
+  Tablemodel: OrderGetAllTableWithViewTable[] = [];
   ngOnInit(): void {
+    this.getAllTable()
   }
-
+  async getAllTable() {
+    this.Tablemodel = await this.services.GetAllTableWithOrder();
+  }
 }

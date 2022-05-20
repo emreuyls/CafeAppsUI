@@ -3,7 +3,6 @@
   <mat-divider></mat-divider>
 </div>
 <mat-accordion>
-<app-table-list></app-table-list>
-<app-table-list></app-table-list>
-<app-table-list></app-table-list>
+<app-table-list *ngFor="let model of Tablemodel" [dataModel]="model"></app-table-list>
+
 </mat-accordion>
