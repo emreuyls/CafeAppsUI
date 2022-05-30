@@ -27,7 +27,9 @@ export class CardTableComponent implements OnInit {
   }
   openOrderDialog(): void {
     const dialogRef = this.dialog.open(ShowOrderComponent, {
-      width: '600px'
+      width: '80%',
+      height:'80%',
+      data:this.model.id
     });
 
     dialogRef.afterClosed().subscribe();

@@ -1,23 +1,75 @@
-<div class="row">
-  <div class="col-md-6">
-    <mat-form-field appearance="outline">
-      <mat-label>Seçiniz</mat-label>
-      <mat-select [(value)]="selectedMenu">
-        <mat-option *ngFor="let menu of MenuList" [value]="menu">{{menu.title}}</mat-option>
-      </mat-select>
-    </mat-form-field>
-    <mat-form-field appearance="outline">
-      <mat-label>Miktar</mat-label>
-      <input matInput>
-    </mat-form-field>
-    <button mat-raised-button color="primary"(click)="AddBasket()" >Sepete Ekle</button>
+<h1 mat-dialog-title>Menü Ekleme</h1>
+<div mat-dialog-content>
+  <div class="row">
+    <div class="col-md-2">
+      <h5>Masalar</h5>
+    <div *ngIf="selectTable?.id==null">
+      <span>Lütfen Bir Masa Seçiniz.</span>
+    </div>
+      <cdk-virtual-scroll-viewport itemSize="50" class="table-viewport">
+        <mat-selection-list #tableSelection multiple="false" >
+          <mat-list-option #tableLists *ngFor="let table of TableList" (click)="onSelectTable(table)" >{{table.tableName}}</mat-list-option>
+        </mat-selection-list>
+      </cdk-virtual-scroll-viewport>
+    </div>
+    <div class="col-md-10 new-menu-side">
+      <div class="row new-row-menu-side">
+
+        <div class="col-md-4">
+          <h4>Menü Başlıkları</h4>
+          <cdk-virtual-scroll-viewport itemSize="50" class="menu-viewport">
+          <mat-selection-list multiple="false">
+            <mat-list-option  #menuType *ngFor="let table of MenuTypesList" [value]="table.menus" (click)="OnMenuTypeSelected(table.menus)" >{{table.menuTypes}}</mat-list-option>
+          </mat-selection-list>
+        </cdk-virtual-scroll-viewport>
+        </div>
+        <div class="col-md-4">
+          <h4>Menüler</h4>
+          <cdk-virtual-scroll-viewport itemSize="50" class="menu-viewport">
+          <mat-selection-list multiple="false">
+            <mat-list-option *ngFor="let menu of MenuList" (click)="onMenuSelect(menu)">{{menu.menuName}}</mat-list-option>
+          </mat-selection-list>
+        </cdk-virtual-scroll-viewport>
+        </div>
+        <div class="col-md-4">
+          <form  [formGroup]="orderFormGroup">
+            <mat-form-field appearance="outline">
+              <mat-label>Menü</mat-label>
+              <input type="text" matInput formControlName="menu">
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+              <mat-label>Adet Sayısı</mat-label>
+              <input type="number" value="1" matInput formControlName="stock">
+            </mat-form-field>
+          </form>
+          <button mat-raised-button type="button" (click)="OnAddMenu(orderFormGroup.value)" >Menüye Ekle</button>
+        </div>
+      </div>
+      <div class="row new-row-menu-side">
+        <table mat-table [dataSource]="dataSource">
+          <ng-container matColumnDef="title">
+            <th mat-header-cell *matHeaderCellDef ngClass="tableColumn"> Ürün Adı </th>
+            <td mat-cell *matCellDef="let element"> {{element.menu.title}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="stock">
+            <th mat-header-cell *matHeaderCellDef ngClass="tableColumn"> Adet </th>
+            <td mat-cell *matCellDef="let element"> {{element.stock}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="delete">
+            <th mat-header-cell *matHeaderCellDef ngClass="tableColumn"> Kaldır </th>
+            <td mat-cell *matCellDef="let element" (click)="removeMenu(element.menu.id)"> delete </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+      </div>
+    </div>
   </div>
-  <div class="col-md-6">
-    <mat-list>
-      <mat-list-item *ngFor="let menu of MenuBasket">
-        <div mat-line>{{menu.title}}</div>
-        <div mat-line>2 adet</div>
-      </mat-list-item>
-    </mat-list>
-  </div>
+</div>
+<div mat-dialog-actions class="btn-side" align="end">
+  <button mat-dialog-close mat-raised-button color="warn">Kapat</button>
+  <button mat-raised-button color="primary" (click)="complateOrder()">Siparişi Tamamla</button>
 </div>

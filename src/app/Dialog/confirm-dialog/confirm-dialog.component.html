@@ -1,8 +1,8 @@
-<h1 mat-dialog-title>Silme İşlemi</h1>
+<h1 mat-dialog-title>{{data.messageTitle}}</h1>
 <div mat-dialog-content>
-  <p>Bu Veriyi Silmek İstediğinize Emin misiniz?</p>
+  <p>{{data.messageBody}}</p>
 </div>
 <div mat-dialog-actions>
-  <button mat-raised-button style="color: #60A917;" [mat-dialog-close]="data" cdkFocusInitial>Evet</button>
+  <button mat-raised-button style="color: #60A917;" [mat-dialog-close]="data.DialogConfirm" cdkFocusInitial>Evet</button>
   <button mat-raised-button style="color:#E51400;" (click)="onNoClick()">İptal</button>
 </div>

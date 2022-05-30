@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { firstValueFrom } from 'rxjs';
+import { getOrderMenuTableViewModel } from 'src/app/model/viewModels/Table/getOrderMenuTable.viewmodel';
 import { TableCreateViewModel } from 'src/app/model/viewModels/Table/TableCreate.viewmodel';
 import { GetTableViewModel } from 'src/app/model/viewModels/Table/TableGet.viewmodel';
 import { TableUpdateViewModel } from 'src/app/model/viewModels/Table/TableUpdate.viewmodel';
@@ -58,5 +59,13 @@ export class TableService {
         errorcallBack()
       }
     );
+  }
+  async getOrderMenuTable():Promise<getOrderMenuTableViewModel[]>{
+    const model:Promise<getOrderMenuTableViewModel[]>=firstValueFrom(this.httpServices.get<getOrderMenuTableViewModel[]>({
+      controller:"table",
+      action:"NewOrderGetAllTable"
+    }));
+    model.then().catch();
+    return await model;
   }
 }

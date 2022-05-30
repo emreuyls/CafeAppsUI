@@ -9,6 +9,7 @@ import { TableMenuViewModel } from 'src/app/model/viewModels/Menu/MenuTable.view
 import { UpdateMenuViewModel } from 'src/app/model/viewModels/Menu/MenuUpdate.viewmodel';
 import { GetMenuListViewModel } from 'src/app/model/viewModels/Menu/GetMenuList.viewmodel';
 import { async } from '@angular/core/testing';
+import { getMenuTypesWithMenusViewModel } from 'src/app/model/viewModels/MenuTypes/getMenuTypesWithMenus.viewmodel';
 @Injectable({
   providedIn: 'root'
 })
@@ -104,6 +105,15 @@ export class MenuService {
 
     )
 
+  }
+
+  async getMenuTypesWithMenus():Promise<getMenuTypesWithMenusViewModel[]>{
+    const model:Promise<getMenuTypesWithMenusViewModel[]>=firstValueFrom(this.httpClient.get<getMenuTypesWithMenusViewModel[]>({
+      controller:"MenuTypes",
+      action:"GetMenuTypesWithMenus"
+    }));
+
+    return await model;
   }
 }
 

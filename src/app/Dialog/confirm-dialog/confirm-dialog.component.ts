@@ -10,7 +10,7 @@ export class ConfirmDialogComponent{
 
   constructor(
     public dialogRef: MatDialogRef<ConfirmDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: DialogConfirm,
+    @Inject(MAT_DIALOG_DATA) public data: ConfirmDialogOptions,
   ) {}
 
   onNoClick(): void {
@@ -20,4 +20,11 @@ export class ConfirmDialogComponent{
 export enum DialogConfirm {
   Yes,
   No
+}
+
+export class ConfirmDialogOptions{
+  messageTitle:string;
+  messageBody:string;
+  DialogConfirm:DialogConfirm;
+
 }

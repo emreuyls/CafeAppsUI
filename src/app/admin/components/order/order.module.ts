@@ -14,11 +14,19 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatListModule } from '@angular/material/list';
+import { NewOrderListComponent } from './new-order-list/new-order-list.component';
+import { AllOrderListComponent } from './all-order-list/all-order-list.component';
+import { MatCardModule } from '@angular/material/card';
+import { ScrollingModule } from '@angular/cdk/scrolling';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatChipsModule } from '@angular/material/chips';
 @NgModule({
   declarations: [
     OrderComponent,
     TableListComponent,
-    CreateOrderComponent
+    CreateOrderComponent,
+    NewOrderListComponent,
+    AllOrderListComponent
   ],
   imports: [
     CommonModule,
@@ -34,7 +42,12 @@ import { MatListModule } from '@angular/material/list';
     ReactiveFormsModule,
     MatInputModule,
     MatSelectModule,
-    MatListModule
+    MatListModule,
+    MatCardModule,
+    ScrollingModule,
+    MatDialogModule,
+    MatChipsModule
+
   ],
   exports: [
     OrderComponent

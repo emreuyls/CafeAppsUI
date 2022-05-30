@@ -1,0 +1,43 @@
+<mat-card>
+  <mat-card-header style="height: 76px;">
+    <mat-card-title>Gelen Siparişler</mat-card-title>
+    <mat-card-subtitle>Toplam Sipariş<b>4</b></mat-card-subtitle>
+  </mat-card-header>
+
+  <mat-card class="order-card">
+    <div class="row">
+      <div class="col-md-6">
+        <mat-card-header class="order-card-title">
+          <mat-card-title>Masa 12</mat-card-title>
+          <mat-card-subtitle>Ön Balkon 12</mat-card-subtitle>
+          <div class="order-card-title-bottom">
+            <div class="card-buble">Online Sipariş</div>
+          </div>
+        </mat-card-header>
+      </div>
+      <div class="col-md-6">
+        <mat-card-content class="order-card-menu">
+          <mat-list>
+            <div mat-subheader>Siparişler</div>
+            <cdk-virtual-scroll-viewport itemSize="50" class="order-viewport">
+              <mat-list-item>
+                2x Çay
+              </mat-list-item>
+              <mat-list-item>
+                1x Su
+              </mat-list-item>
+            </cdk-virtual-scroll-viewport>
+
+          </mat-list>
+        </mat-card-content>
+      </div>
+    </div>
+
+    <mat-card-actions align="end">
+      <button mat-raised-button class="order-btn">Siparişi Onayla</button>
+    </mat-card-actions>
+
+
+  </mat-card>
+
+</mat-card>

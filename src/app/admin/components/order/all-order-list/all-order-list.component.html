@@ -1,0 +1,43 @@
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>
+      İşlemdeki Siparişler
+      <button mat-raised-button color="primary" (click)="onNewOrderDialog()">Yeni Sipariş</button>
+    </mat-card-title>
+    <mat-card-subtitle>
+
+    Toplam Sipariş <b>{{comfirmOrderList.length}}</b>
+    </mat-card-subtitle>
+  </mat-card-header>
+  <cdk-virtual-scroll-viewport itemSize="50" class="orderListviewport">
+    <mat-card *ngFor="let order of comfirmOrderList">
+      <div class="row">
+        <div class="col-md-6">
+          <mat-card-header>
+            <mat-card-title>
+              <h4>{{order.tableName}}</h4>
+            </mat-card-title>
+            <mat-card-subtitle>
+              {{order.tableLocation}}
+            </mat-card-subtitle>
+          </mat-card-header>
+        </div>
+        <div class="col-md-6">
+          <mat-card-content>
+            <mat-list>
+              <div mat-subheader>Siparişler</div>
+              <cdk-virtual-scroll-viewport itemSize="50" class="order-viewport">
+                <mat-list-item *ngFor="let menu of order.menu">
+                  <div mat-line>{{menu.numberofProduct}} X {{menu.title}}</div>
+                </mat-list-item>
+              </cdk-virtual-scroll-viewport>
+            </mat-list>
+          </mat-card-content>
+        </div>
+      </div>
+      <mat-card-actions align="end">
+        <button mat-raised-button class="order-btn" (click)="onDelivering(order.id)">Teslim Edildi</button>
+      </mat-card-actions>
+    </mat-card>
+  </cdk-virtual-scroll-viewport>
+</mat-card>

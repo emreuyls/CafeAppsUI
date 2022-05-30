@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { firstValueFrom } from 'rxjs';
-import { OrderGetAllTableWithViewTable } from 'src/app/model/viewModels/Order/GetAllTableWithOrder.viewmodel';
+import { createOrderViewModel } from 'src/app/model/viewModels/Order/createOrder.viewmodel';
+import { getAllComfirmOrderViewModel } from 'src/app/model/viewModels/Order/getAllComfirmOrder.viewmodel';
+import { OrderListForTableViewModel } from 'src/app/model/viewModels/Order/OrderMenuForTable.viewmodel';
 import { HttpClientService } from '../common/http-client.service';
 
 @Injectable({
@@ -8,15 +10,42 @@ import { HttpClientService } from '../common/http-client.service';
 })
 export class OrderService {
 
-  constructor(private services:HttpClientService) { }
+  constructor(private services: HttpClientService) { }
 
- async GetAllTableWithOrder():Promise<OrderGetAllTableWithViewTable[]>{
-    const model:Promise<OrderGetAllTableWithViewTable[]> = firstValueFrom(this.services.get<OrderGetAllTableWithViewTable[]>({
-      controller:"table",
-      action:"GetAllOrderPage"
+
+  createOrder(data: createOrderViewModel, succesCallBack: () => void, errorCallBack: () => void) {
+    this.services.post<createOrderViewModel>({
+      controller: 'order',
+      action: 'createorder'
+    }, data).subscribe(
+      (success) => { succesCallBack() },
+      (error) => { errorCallBack() }
+    );
+  }
+
+  async getAllComfirmOrder(): Promise<getAllComfirmOrderViewModel[]> {
+    const dataModel: Promise<getAllComfirmOrderViewModel[]> = firstValueFrom(this.services.get<getAllComfirmOrderViewModel[]>({
+      controller: 'order',
+      action: 'getcomfirmorder'
     }));
-    model.then();
-    model.catch();
-    return await model;
+    dataModel.then().catch();
+    return await dataModel;
+  }
+  putOrderDelivering(id:string,succesCallBack:()=>void,errorCallBack:()=>void){
+    this.services.get({
+      controller:'order',
+      action:'orderdelivering',
+      querystring:`id=${id}`
+
+    }).subscribe((success)=>{succesCallBack()},(error)=>{errorCallBack()});
+  }
+ async getOrderMenuForTable(id:string):Promise<OrderListForTableViewModel[]>
+  {
+    const dataModel:Promise<OrderListForTableViewModel[]>=firstValueFrom(this.services.get<OrderListForTableViewModel[]>({
+      controller:'order',
+      action:'ordermenufortable',
+      querystring:`id=${id}`
+    }));
+    return await dataModel;
   }
 }

@@ -1,3 +1,28 @@
-mat-form-field{
-  display: block;
+table{
+  width: 100%;
 }
+
+.table-viewport{
+  height: 100%;
+  width: auto;
+}
+mat-chip{
+max-width: 90%;
+}
+.new-menu-side{
+  height: 28vw;
+width: 100%;
+margin: 0 auto;
+.new-row-menu-side:first-child{
+height: 19vw;
+
+}
+.new-row-menu-side:last-child{
+  height: 9vw;
+
+  }
+}
+.menu-viewport{
+height: 17vw;
+}
+

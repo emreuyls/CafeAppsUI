@@ -17,6 +17,7 @@ import {MatInputModule} from '@angular/material/input';
 import { ShowAccountComponent } from './show-account/show-account.component';
 import { ShowOrderComponent } from './show-order/show-order.component';
 import { ShowTableComponent } from './show-table/show-table.component';
+import { MatTableModule } from '@angular/material/table';
 @NgModule({
   declarations: [
     TableComponent,
@@ -38,6 +39,7 @@ import { ShowTableComponent } from './show-table/show-table.component';
     MatDividerModule,
     MatDialogModule,
     MatIconModule,
+    MatTableModule,
     MatInputModule  ],
   exports: [
     TableComponent
