@@ -48,4 +48,20 @@ export class OrderService {
     }));
     return await dataModel;
   }
+
+  ComplateOrderTable(tableID:string[],succesCallBack:()=>void,errorCallBack:()=>void)
+  {
+    this.services.put({
+      controller:'order',
+      action:'ComplateOrderTable'
+    },tableID).subscribe(
+      (success)=>{
+        succesCallBack()
+      },
+      (error)=>{
+        errorCallBack()
+      }
+    );
+
+  }
 }

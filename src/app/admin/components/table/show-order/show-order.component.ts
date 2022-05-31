@@ -1,9 +1,12 @@
-import { DataSource } from '@angular/cdk/collections';
 import { Component, Inject, OnInit } from '@angular/core';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
-import { OrderListForTableViewModel, orderMenuForTableViewModel } from 'src/app/model/viewModels/Order/OrderMenuForTable.viewmodel';
+import { ConfirmDialogComponent, DialogConfirm } from 'src/app/Dialog/confirm-dialog/confirm-dialog.component';
+import { ComplateOrderTableViewModel } from 'src/app/model/viewModels/Order/ComplateOrderTable.viewmodel';
+import { OrderListMenuForTableViewModel } from 'src/app/model/viewModels/Order/OrderMenuForTable.viewmodel';
 import { OrderService } from 'src/app/services/admin/order.service';
+import { CustomToastrService, ToastrMessageType, ToastrPosition } from 'src/app/services/common/custom-toastr.service';
+
 
 @Component({
   selector: 'app-show-order',
@@ -11,20 +14,57 @@ import { OrderService } from 'src/app/services/admin/order.service';
   styleUrls: ['./show-order.component.scss']
 })
 export class ShowOrderComponent implements OnInit {
-  TableMenuDs: MatTableDataSource<OrderListForTableViewModel> = new MatTableDataSource<OrderListForTableViewModel>();
-  constructor(public dialogRef: MatDialogRef<ShowOrderComponent>, @Inject(MAT_DIALOG_DATA) public data: string, private orderService: OrderService) { }
+  TableMenuDs: MatTableDataSource<OrderListMenuForTableViewModel> = new MatTableDataSource<OrderListMenuForTableViewModel>();
+  constructor(public dialogRef: MatDialogRef<ShowOrderComponent>, @Inject(MAT_DIALOG_DATA) public data: string, private orderService: OrderService, private message: CustomToastrService, private dialog: MatDialog) { }
   displayedColumns: string[] = ['menuName', 'stock', 'price'];
-  DataOrderMenu: OrderListForTableViewModel[] = [];
+  DataOrderMenu: OrderListMenuForTableViewModel[] = [];
+  orderID: string[] = [];
   ngOnInit(): void {
     this.getOrderMenu();
   }
   async getOrderMenu() {
-    this.DataOrderMenu = await this.orderService.getOrderMenuForTable(this.data)
+    const dataModel = await this.orderService.getOrderMenuForTable(this.data)
 
+    for (let i = 0; i < dataModel.length; i++) {
+      this.orderID.push(dataModel[i].orderID);
+      for (let m = 0; m < dataModel[i].menu.length; m++) {
+        const sum = this.DataOrderMenu.find(a => a.menuName == dataModel[i].menu[m].menuName)
+        if (sum != undefined)
+          this.DataOrderMenu.filter(a => a.menuName === dataModel[i].menu[m].menuName).forEach(s => { s.stock = s.stock ? s.stock + dataModel[i].menu[m].stock : s.stock })
+        else
+          this.DataOrderMenu.push(dataModel[i].menu[m])
+      }
+    }
     this.TableMenuDs.data = this.DataOrderMenu;
-    //burada veriler geliyor lakin gelen verileri istediğim gibi gelmiyor onları ayarlamak lazım şuanki viewmodel türü pek uygun gelmiyor
   }
   getTotalCost() {
-    // return this.transactions.map(t => t.cost).reduce((acc, value) => acc + value, 0);
+    let calc: number = 0;
+    this.DataOrderMenu.forEach(a => {
+      calc += a.price * a.stock;
+    })
+    return calc;
+  }
+  onComplateOrder() {
+    this.dialog.open(ConfirmDialogComponent, {
+      width: '300px',
+      data: {
+        messageTitle: "Hesap Ödeme",
+        messageBody: "Masa'nın Hesabını Kapatmak İstiyormusunuz",
+        DialogConfirm: DialogConfirm.Yes
+      }
+    }).afterClosed().subscribe(result => result == DialogConfirm.Yes ?
+      this.orderService.ComplateOrderTable(this.orderID, () => {
+        this.message.message("Başarılı", "Masa Hesap Ödemesi Yapılmıştır.", {
+          messageType: ToastrMessageType.Success,
+          position: ToastrPosition.TopRight
+        });
+        this.dialogRef.close();
+      }, () => {
+        this.message.message("Sorun", "Hesap Ödemesi Sırasında Bir Sorun Oluştu", {
+          messageType: ToastrMessageType.Error,
+          position: ToastrPosition.TopRight
+        })
+      })
+      : "");
   }
 }

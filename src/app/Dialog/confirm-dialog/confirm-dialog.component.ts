@@ -23,8 +23,8 @@ export enum DialogConfirm {
 }
 
 export class ConfirmDialogOptions{
-  messageTitle:string;
-  messageBody:string;
+  messageTitle:string="";
+  messageBody:string="";
   DialogConfirm:DialogConfirm;
 
 }

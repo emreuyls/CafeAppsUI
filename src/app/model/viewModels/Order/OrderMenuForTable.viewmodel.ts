@@ -1,9 +1,10 @@
 export interface OrderListForTableViewModel {
-isOrdered:boolean,
-orderMenu:orderMenuForTableViewModel[]
+  orderID: string,
+  menu: OrderListMenuForTableViewModel[]
 }
-export interface orderMenuForTableViewModel{
+export interface OrderListMenuForTableViewModel {
   menuName: string,
   stock: number,
   price: number
 }
+
