@@ -1,7 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { GetTableViewModel } from 'src/app/model/viewModels/Table/TableGet.viewmodel';
-import { ShowAccountComponent } from '../show-account/show-account.component';
 import { ShowOrderComponent } from '../show-order/show-order.component';
 import { ShowTableComponent } from '../show-table/show-table.component';
 
@@ -17,13 +16,6 @@ export class CardTableComponent implements OnInit {
   time: Date;
   @Output() callback:EventEmitter<any>=new EventEmitter();
   ngOnInit(): void {
-  }
-  openAccountDialog(): void {
-    const dialogRef = this.dialog.open(ShowAccountComponent, {
-      width: '600px'
-    });
-
-    dialogRef.afterClosed().subscribe();
   }
   openOrderDialog(): void {
     const dialogRef = this.dialog.open(ShowOrderComponent, {

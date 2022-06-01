@@ -25,7 +25,8 @@ export class AllOrderListComponent implements OnInit {
   onNewOrderDialog() {
     this.dialog.open(CreateOrderComponent, {
       width: '80%',
-      height: '80%'
+      height: '80%',
+      data:undefined
     }).afterClosed().subscribe(result => result ? this.getAllOrder() : "");
   }
   onDelivering(id: string) {

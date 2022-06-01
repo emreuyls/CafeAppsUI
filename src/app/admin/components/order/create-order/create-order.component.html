@@ -1,7 +1,7 @@
 <h1 mat-dialog-title>Menü Ekleme</h1>
 <div mat-dialog-content>
   <div class="row">
-    <div class="col-md-2">
+    <div class="col-md-2" *ngIf="this.data==undefined">
       <h5>Masalar</h5>
     <div *ngIf="selectTable?.id==null">
       <span>Lütfen Bir Masa Seçiniz.</span>

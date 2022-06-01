@@ -22,9 +22,9 @@ export enum DialogConfirm {
   No
 }
 
-export class ConfirmDialogOptions{
-  messageTitle:string="";
-  messageBody:string="";
+export interface ConfirmDialogOptions{
+  messageTitle:string;
+  messageBody:string;
   DialogConfirm:DialogConfirm;
 
 }

@@ -1,9 +1,8 @@
-import { InteractivityChecker } from '@angular/cdk/a11y';
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { MatChip } from '@angular/material/chips';
-import { MatDialogRef } from '@angular/material/dialog';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
+import { ConfirmDialogComponent, DialogConfirm } from 'src/app/Dialog/confirm-dialog/confirm-dialog.component';
 import { ListMenuDataModel } from 'src/app/model/dataModels/ListMenu.datamodel';
 import { getMenuTypesWithMenusViewModel, MenusByMenuTypesVM } from 'src/app/model/viewModels/MenuTypes/getMenuTypesWithMenus.viewmodel';
 import { createOrderMenuViewModel, createOrderViewModel } from 'src/app/model/viewModels/Order/createOrder.viewmodel';
@@ -14,6 +13,7 @@ import { TableService } from 'src/app/services/admin/table.service';
 
 
 
+
 @Component({
   selector: 'app-create-order',
   templateUrl: './create-order.component.html',
@@ -21,7 +21,7 @@ import { TableService } from 'src/app/services/admin/table.service';
 })
 export class CreateOrderComponent implements OnInit {
 
-  constructor(private dialogRef: MatDialogRef<CreateOrderComponent>, private tableServices: TableService, private MenuServices: MenuService, private orderServices: OrderService) { dialogRef.disableClose = true }
+  constructor(private dialogRef: MatDialogRef<CreateOrderComponent>, private tableServices: TableService, private MenuServices: MenuService, private orderServices: OrderService, private dialog: MatDialog, @Inject(MAT_DIALOG_DATA) public data: string) { dialogRef.disableClose = true }
   dataSource: MatTableDataSource<ListMenuDataModel> = new MatTableDataSource<ListMenuDataModel>();
   displayedColumns: string[] = ['title', 'stock', 'delete'];
   TableList: getOrderMenuTableViewModel[] = [];
@@ -31,15 +31,24 @@ export class CreateOrderComponent implements OnInit {
   selectTable: getOrderMenuTableViewModel;
   orderFormGroup = new FormGroup({
     id: new FormControl(''),
-    table: new FormControl('',[
-      Validators.required,
-    ]),
     menu: new FormControl(''),
     stock: new FormControl(1)
   })
   selectedChipsValue: any;
   async ngOnInit() {
-    await this.GetTable();
+    if(this.data==undefined)
+    {
+      await this.GetTable();
+    }
+    else
+    {
+      const model:getOrderMenuTableViewModel={
+        id:this.data,
+        tableName:"table"
+      }
+      this.selectTable=model;
+    }
+    // this.data == undefined ? await this.GetTable() : this.selectTable.id = this.data;
     await this.GetMenu();
   }
   async GetTable() {
@@ -69,24 +78,35 @@ export class CreateOrderComponent implements OnInit {
     this.SelectMenuTable.forEach(a => {
       menuModel.push({ MenuID: a.menu.id, NumberofProduct: a.stock })
     });
-    const createModel: createOrderViewModel={
+    const createModel: createOrderViewModel = {
       menu: menuModel,
       tableID: this.selectTable.id
     };
 
-    this.orderServices.createOrder(createModel,()=>{this.dialogRef.close(true)},()=>{});
+    this.orderServices.createOrder(createModel, () => { this.dialogRef.close(true) }, () => { });
   }
   OnAddMenu(data: any) {
-    console.log(data);
-    const menu: ListMenuDataModel = {
-      stock: data.stock,
-      menu: { id: data.id, title: data.menu }
-    };
-    const sum = this.SelectMenuTable.find(a => a.menu.id === menu.menu.id);
-    if (sum != undefined)
-      this.SelectMenuTable.filter(a => a.menu.id === menu.menu.id).forEach(s => { s.stock = s.stock ? s.stock + menu.stock : s.stock });
-    else
-      this.SelectMenuTable?.push(menu);
-    this.dataSource.data = this.SelectMenuTable;
+    this.dialog.open(ConfirmDialogComponent, {
+      width: '600px',
+      data: {
+        messageTitle: `${this.orderFormGroup.controls['menu'].value}`,
+        messageBody: "Ürününü Eklemek İstiyor musunuz?",
+        DialogConfirm: DialogConfirm.Yes
+      }
+    }).afterClosed().subscribe(result => {
+      if (result == DialogConfirm.Yes) {
+        const menu: ListMenuDataModel = {
+          stock: data.stock,
+          menu: { id: data.id, title: data.menu }
+        };
+        const sum = this.SelectMenuTable.find(a => a.menu.id === menu.menu.id);
+        if (sum != undefined)
+          this.SelectMenuTable.filter(a => a.menu.id === menu.menu.id).forEach(s => { s.stock = s.stock ? s.stock + menu.stock : s.stock });
+        else
+          this.SelectMenuTable?.push(menu);
+        this.dataSource.data = this.SelectMenuTable;
+
+      }
+    });
   }
 }

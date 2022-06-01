@@ -14,7 +14,6 @@ import {MatIconModule} from '@angular/material/icon';
 import { ReactiveFormsModule } from '@angular/forms';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
-import { ShowAccountComponent } from './show-account/show-account.component';
 import { ShowOrderComponent } from './show-order/show-order.component';
 import { ShowTableComponent } from './show-table/show-table.component';
 import { MatTableModule } from '@angular/material/table';
@@ -23,7 +22,6 @@ import { MatTableModule } from '@angular/material/table';
     TableComponent,
     CreateTableComponent,
     CardTableComponent,
-    ShowAccountComponent,
     ShowOrderComponent,
     ShowTableComponent,
   ],
